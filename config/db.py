@@ -1,6 +1,11 @@
+from os import environ as env
+from dotenv import load_dotenv
+
 from sqlalchemy import create_engine, MetaData
 
-engine = create_engine("mysql+pymysql://root:urbano111@localhost:3306/test_api")
+load_dotenv()
+
+engine = create_engine(env["DB_DATA"])
 
 meta = MetaData()
 
