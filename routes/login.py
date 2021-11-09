@@ -21,6 +21,8 @@ login = APIRouter(
 @login.post("/auth")
 def authentication(user_to_auth: User_Auth):
     
+    print(f'Peticion para login del usuario {user_to_auth.email}')
+
     user_db = conn.execute(users.select().where(users.c.email == user_to_auth.email)).first()
     
     if user_db is None:
@@ -38,8 +40,10 @@ def authentication(user_to_auth: User_Auth):
             "email": user_db["email"],
             "is_auth": True
         }
+        print(f'Usuario {user_auth["email"]} logeado con exito')
         return user_auth
     else:
+        print(f'Usuario {user_to_auth.email} error al inicio de sesion')
         return {"is_auth" : False}
 
 @login.post("/register")
