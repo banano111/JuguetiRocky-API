@@ -38,6 +38,7 @@ def authentication(user_to_auth: User_Auth):
             "name": user_db["name"],
             "last_name": user_db["last_name"],
             "email": user_db["email"],
+            "user_id": user_db["id"],
             "is_auth": True
         }
         print(f'Usuario {user_auth["email"]} logeado con exito')
