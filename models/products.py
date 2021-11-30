@@ -10,5 +10,6 @@ productos = Table("productos", meta,
     Column("Categoria", VARCHAR(30)),
     Column("Descripcion", VARCHAR(100)),
     Column("Imagen", VARCHAR(500)),
-    Column("MostWanted", SmallInteger)
+    Column("MostWanted", SmallInteger),
+    Column("Marca", VARCHAR(50))
     )

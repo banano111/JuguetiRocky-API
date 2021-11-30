@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import APIRouter
 from sqlalchemy.sql.expression import true
 from sqlalchemy.sql.functions import user
@@ -10,9 +11,16 @@ products = APIRouter(
 )
 
 @products.get("/")
-def most_wanted():
-    all_products = conn.execute(productos.select()).all()
-    return all_products
+def get_products(categoria: Optional[str] = None, marca: Optional[str] = None):
+    if categoria:
+        category_products = conn.execute(productos.select().where(productos.c.Categoria == categoria)).all()
+        return category_products
+    elif marca:
+        brand_products = conn.execute(productos.select().where(productos.c.Marca == marca)).all()
+        return brand_products
+    else:
+        all_products = conn.execute(productos.select()).all()
+        return all_products
 
 @products.get("/mostwanted")
 def most_wanted():
